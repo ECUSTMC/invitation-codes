@@ -32,11 +32,16 @@ return function (Dispatcher $events, Filter $filter) {
     $filter->add('can_register', InvitationCodes\RegistrationFinalCheck::class, 10);
 
     $events->listen('auth.registration.completed', function ($user) {
-        DB::table('invitation_codes')
-            ->where('code', session()->pull('using_invitation_code'))
-            ->update([
-                'used_by' => $user->uid,
-                'used_at' => Carbon::now(),
-            ]);
+        $code = session()->pull('using_invitation_code');
+        $isUniversal = session()->pull('using_universal_code', false);
+
+        if (!$isUniversal && $code) {
+            DB::table('invitation_codes')
+                ->where('code', $code)
+                ->update([
+                    'used_by' => $user->uid,
+                    'used_at' => Carbon::now(),
+                ]);
+        }
     });
 };

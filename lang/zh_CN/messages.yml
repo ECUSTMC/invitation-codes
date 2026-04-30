@@ -1,2 +1,3 @@
 empty: 邀请码不能为空
 invalid: 邀请码无效
+domain_not_allowed: 该邀请码仅限华东理工大学邮箱（@mail.ecust.edu.cn 或 @ecust.edu.cn）使用

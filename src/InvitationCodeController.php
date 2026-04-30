@@ -64,7 +64,7 @@ class InvitationCodeController extends Controller
         ]);
       
         if ($validator->fails()) {
-            return response(['success' => false, 'error' => $errors->all()], 400);
+            return response(['success' => false, 'error' => $validator->errors()->all()], 400);
         }
       
         ['id' => $id, 'description' => $description] = $request->all();
