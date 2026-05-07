@@ -13,6 +13,7 @@ class CheckInvitationCode
     const ALLOWED_DOMAINS = [
         'mail.ecust.edu.cn',
         'ecust.edu.cn',
+        'alumni.ecust.edu.cn',
     ];
 
     /** @var Request */
